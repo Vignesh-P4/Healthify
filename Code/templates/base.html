@@ -2,47 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Health App{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
 
-        
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 15px;
-        }
-        nav ul li {
-            display: inline;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-        .logo {
-            width: 300px; /* Small size */
-            height: auto;
-            align-self: center;
-        }
-    </style>
+    <!-- Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Google Maps JavaScript API -->
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiwrIEq4PDrq4MW13lk4wgcTh9I6e_QVg&libraries=places">
+    </script>
+
+    <!-- Google Maps Web Components -->
+    <script type="module"
+            src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js">
+    </script>
+
+    <!-- Google Maps API Loader -->
+    <gmpx-api-loader key="AIzaSyAiwrIEq4PDrq4MW13lk4wgcTh9I6e_QVg"
+                    solution-channel="GMP_GE_mapsandplacesautocomplete_v2">
+    </gmpx-api-loader>
+
+    {% block head %}{% endblock %}
 </head>
-<body>
-    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Healthify+ Logo" class="logo">
-    <nav>
-        <ul>
-            <li><a href="/symptom-checker">Symptom Checker</a></li>
-            <li><a href="/first-aid-guide">First Aid Guide</a></li>
-            <li><a href="/courses">Courses</a></li>
-            <li><a href="/doctor-consultation">Doctor Consultation</a></li>
-            <li><a href="/hospitals">Hospitals</a></li>
-            <li><a href="/health-insurance">Health Insurance</a></li>
-        </ul>
-       
-    </nav>
-    <div class="container">
+<body class="bg-gray-100 text-gray-900 font-sans">
+
+    <!-- Header + Navigation -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-teal-700">Healthify+</a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="/" class="text-gray-700 hover:text-teal-600 font-medium">Home</a>
+                <a href="/symptom-checker" class="text-gray-700 hover:text-teal-600 font-medium">Symptom Checker</a>
+                <a href="/first-aid-guide" class="text-gray-700 hover:text-teal-600 font-medium">First Aid</a>
+                <a href="/courses" class="text-gray-700 hover:text-teal-600 font-medium">Courses</a>
+                <a href="/doctor-consultation" class="text-gray-700 hover:text-teal-600 font-medium">Consultation</a>
+                <a href="/hospitals" class="text-gray-700 hover:text-teal-600 font-medium">Hospitals</a>
+                <a href="/health-insurance" class="text-gray-700 hover:text-teal-600 font-medium">Insurance</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content block -->
+    <main class="container mx-auto px-4 py-6">
         {% block content %}{% endblock %}
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t text-center py-4 mt-8 text-sm text-gray-500">
+        &copy; {{ year|default('2025') }} Healthify+. All rights reserved.
+    </footer>
 </body>
 </html>

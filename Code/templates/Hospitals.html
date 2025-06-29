@@ -1,9 +1,21 @@
 {% extends "base.html" %}
 
-{% block title %}Hospitals{% endblock %}
+{% block title %}Find Hospitals - Healthify+{% endblock %}
 
 {% block content %}
-<h1>Hospitals</h1>
-<p>Find hospitals near you.</p>
-<button class="btn">Search Hospitals</button>
+<h1 class="text-2xl font-bold text-teal-700 mb-4">Nearby Hospitals</h1>
+<p class="mb-6 text-gray-700">Search and locate hospitals near you for quick assistance.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for hospital in hospitals %}
+    <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
+        <h2 class="text-lg font-semibold text-gray-800">{{ hospital.name }}</h2>
+        <p class="text-sm text-gray-600">Address: {{ hospital.address }}</p>
+        <p class="text-sm text-gray-600">Phone: {{ hospital.phone }}</p>
+        <a href="{{ hospital.map_link }}" target="_blank" class="mt-2 inline-block text-teal-600 hover:underline text-sm">
+            View on Map
+        </a>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

@@ -1,0 +1,8 @@
+hospitals_data = [
+    {'id': 1, 'name': 'Apollo Hospitals', 'speciality': 'Multi-specialty', 'website': 'https://www.apollohospitals.com/', 'latitude': 17.4140, 'longitude': 78.4483},
+    {'id': 2, 'name': 'Yashoda Hospitals', 'speciality': 'Cardiology & Oncology', 'website': 'https://www.yashodahospitals.com/', 'latitude': 17.4149, 'longitude': 78.4983},
+    {'id': 3, 'name': 'KIMS Hospital', 'speciality': 'Multi-specialty', 'website': 'https://www.kimshospitals.com/', 'latitude': 17.4375, 'longitude': 78.4483},
+    {'id': 4, 'name': 'Continental Hospitals', 'speciality': 'Multi-specialty', 'website': 'https://www.continentalhospitals.com/', 'latitude': 17.4089, 'longitude': 78.3733},
+    {'id': 5, 'name': 'Rainbow Children\'s Hospital', 'speciality': 'Pediatrics', 'website': 'https://www.rainbowhospitals.in/', 'latitude': 17.4180, 'longitude': 78.4653}
+    # Add other hospitals here
+]

@@ -3,7 +3,186 @@
 {% block title %}Courses{% endblock %}
 
 {% block content %}
-<h1>Courses</h1>
-<p>Enroll in health and wellness courses.</p>
-<button class="btn">Explore Courses</button>
+<h1 class="text-3xl font-bold mb-4 text-blue-800">Courses</h1>
+<p class="mb-6 text-gray-700">Enroll in health and wellness courses. Complete them to earn certifications.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% set courses = [
+    {"title": "CPR (Cardiopulmonary Resuscitation)", "desc": "Learn CPR techniques to save lives during emergencies.", "video": "https://www.youtube.com/embed/Plse2FOkV4Q"},
+    {"title": "Basic First Aid", "desc": "Covers bleeding, choking, burns, and more with step-by-step guidance.", "video": "https://www.youtube.com/embed/mNk0mZRJBV0"},
+    {"title": "Emergency Response Training", "desc": "Respond to natural disasters, accidents, and critical incidents.", "video": "https://www.youtube.com/embed/1zB7tMH9k_s"},
+    {"title": "Snake Bite Treatment", "desc": "Identify venomous bites and apply first aid immediately.", "video": "https://www.youtube.com/embed/nH8o-bgwo_g"},
+    {"title": "Burn Management", "desc": "Treat burns safely and prevent infection.", "video": "https://www.youtube.com/embed/sauqm3mvJ40hcSLt0IqjOQ"},
+    {"title": "Choking Rescue Techniques", "desc": "Learn abdominal thrusts and airway clearing methods.", "video": "https://www.youtube.com/embed/DE45ks9miIw"}
+  ] %}
+
+  {% for course in courses %}
+    <div class="bg-white p-4 border rounded shadow-md">
+      <h2 class="text-xl font-semibold text-blue-700 mb-2">{{ course.title }}</h2>
+      <p class="text-gray-600 mb-3">{{ course.desc }}</p>
+      <div class="aspect-video mb-3">
+        <iframe class="w-full h-full rounded" src="{{ course.video }}" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700" onclick="showMCQForm()">Get Certified</button>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Modal for MCQ Form -->
+<div id="mcqModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeMCQForm()">&times;</span>
+    <h2 class="text-xl font-semibold text-green-700">Certification Test</h2>
+    <form id="mcqForm" onsubmit="return checkAnswers(event)">
+      <div class="mb-4">
+        <label class="block text-gray-700">Question 1: What is the first step in CPR?</label>
+        <input type="radio" name="q1" value="A"> Check if the person is breathing<br>
+        <input type="radio" name="q1" value="B"> Call for help<br>
+        <input type="radio" name="q1" value="C"> Start chest compressions<br>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Question 2: What is used to treat a snake bite?</label>
+        <input type="radio" name="q2" value="A"> Tourniquet<br>
+        <input type="radio" name="q2" value="B"> Antivenom<br>
+        <input type="radio" name="q2" value="C"> Cold compress<br>
+      </div>
+      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Submit Answers</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal for Certificate -->
+<div id="certModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeCertModal()">&times;</span>
+    <h2 class="text-xl font-semibold text-green-700">Certification</h2>
+    <p>You have passed the test! Please enter your details for the certificate.</p>
+    <form id="certForm" onsubmit="generateCertificate(event)">
+      <div class="mb-4">
+        <label class="block text-gray-700">Name:</label>
+        <input type="text" id="name" class="border p-2 w-full" required><br>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Age:</label>
+        <input type="number" id="age" class="border p-2 w-full" required><br>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Email:</label>
+        <input type="email" id="email" class="border p-2 w-full" required><br>
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Generate Certificate</button>
+   
+    </form>
+  </div>
+</div>
+
+<!-- Modal Styles -->
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 50;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    cursor: pointer;
+  }
+</style>
+
+<!-- JavaScript for Modal and Logic -->
+<script>
+  function showMCQForm() {
+    document.getElementById("mcqModal").style.display = "block";
+  }
+
+  function closeMCQForm() {
+    document.getElementById("mcqModal").style.display = "none";
+  }
+
+  function checkAnswers(event) {
+    event.preventDefault();
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+
+    if (!q1 || !q2) {
+      alert("Please answer all questions.");
+      return;
+    }
+
+    const correctAnswers = {
+      q1: "B", // Correct answer for Question 1
+      q2: "B"  // Correct answer for Question 2
+    };
+
+    if (q1.value === correctAnswers.q1 && q2.value === correctAnswers.q2) {
+      closeMCQForm();  // Close the MCQ form
+      showCertModal();  // Show the certificate form modal
+    } else {
+      alert("Some answers are incorrect. Please try again.");
+    }
+  }
+
+  function showCertModal() {
+    document.getElementById("certModal").style.display = "block";
+  }
+
+  function closeCertModal() {
+    document.getElementById("certModal").style.display = "none";
+  }
+
+  function generateCertificate(event) {
+    event.preventDefault();
+    const name = document.getElementById("name").value;
+    const age = document.getElementById("age").value;
+    const email = document.getElementById("email").value;
+  
+    if (name && age && email) {
+      fetch("/generate-certificate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, age, email })  // Pass user email here
+      })
+        .then(res => res.json())
+        .then(data => {
+          alert(data.message);
+          closeCertModal();
+        })
+        .catch(error => {
+          alert("There was an error generating the certificate. Please try again.");
+        });
+    } else {
+      alert("Please fill in all fields.");
+    }
+  }
+  
+</script>
+
 {% endblock %}

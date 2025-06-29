@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Healthify+{% endblock %}
+
+{% block content %}
+<!-- Hero Section with a background image and overlay -->
+<div class="relative bg-cover bg-center h-[400px]" style="background-image: url('path_to_your_hero_image.jpg');">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="relative z-10 text-center text-white py-24 px-6">
+        <h1 class="text-4xl font-bold mb-4">Welcome to Healthify+</h1>
+        <p class="text-lg mb-4">Your trusted digital healthcare companion. Empowering you to take control of your health.</p>
+        <a href="#about" class="bg-teal-500 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-teal-600 transition-all">Learn More</a>
+    </div>
+</div>
+
+<!-- About Section with fresh layout and visuals -->
+<div id="about" class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-3xl font-semibold mb-6 text-teal-900">About Healthify+</h2>
+        <p class="text-lg text-gray-600 mb-6">
+            At <strong>Healthify+</strong>, we aim to revolutionize healthcare by making it more accessible, intuitive, and trustworthy. Our goal is to empower individuals with the necessary tools to make informed health decisions anytime, anywhere.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <!-- Card 1: Symptom Checker -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+            <h3 class="text-xl font-semibold text-teal-900 mb-4">🩺 AI-Powered Symptom Checker</h3>
+            <p class="text-gray-700 mb-4">Get an instant understanding of your symptoms and possible causes, all powered by AI for accuracy.</p>
+            <a href="/symptom-checker" class="text-teal-500 hover:text-teal-600 font-semibold">Learn More →</a>
+        </div>
+        
+        <!-- Card 2: First Aid Guide -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+            <h3 class="text-xl font-semibold text-teal-900 mb-4">⛑️ Interactive First Aid Guide</h3>
+            <p class="text-gray-700 mb-4">Find step-by-step visual guides for common emergencies, including CPR and basic first aid tips.</p>
+            <a href="/first-aid-guide" class="text-teal-500 hover:text-teal-600 font-semibold">Learn More →</a>
+        </div>
+
+        <!-- Card 3: Health Courses -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all">
+            <h3 class="text-xl font-semibold text-teal-900 mb-4">📚 Certified Health Courses</h3>
+            <p class="text-gray-700 mb-4">Take certified courses on life-saving techniques like CPR, first response, and more.</p>
+            <a href="/courses" class="text-teal-500 hover:text-teal-600 font-semibold">Learn More →</a>
+        </div>
+    </div>
+</div>
+
+<!-- Features Section (CTA Buttons) -->
+<div class="w-full bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-2xl font-semibold text-center text-gray-900 mb-8">Explore Our Features</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <a href="/symptom-checker" class="feature-button">🩺 Symptom Checker</a>
+        <a href="/first-aid-guide" class="feature-button">⛑️ First Aid Guide</a>
+        <a href="/courses" class="feature-button">📚 Courses</a>
+        <a href="/doctor-consultation" class="feature-button">👩‍⚕️ Doctor Consultation</a>
+        <a href="/hospitals" class="feature-button">🏥 Find Hospitals</a>
+        <a href="/health-insurance" class="feature-button">🛡️ Health Insurance</a>
+    </div>
+</div>
+
+<!-- Tailwind utility-based styling for feature-button -->
+<style>
+    .feature-button {
+        @apply bg-teal-500 text-white font-semibold py-4 px-6 rounded-lg text-center transition-transform transform hover:scale-105 hover:bg-teal-600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-decoration: none;
+    }
+</style>
+{% endblock %}

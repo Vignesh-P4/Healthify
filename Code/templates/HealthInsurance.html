@@ -3,7 +3,170 @@
 {% block title %}Health Insurance{% endblock %}
 
 {% block content %}
-<h1>Health Insurance</h1>
-<p>Get the best health insurance plans.</p>
-<button class="btn">View Plans</button>
+<h1 class="text-3xl font-bold mb-4 text-blue-800">Health Insurance</h1>
+<p class="mb-6 text-gray-700">Browse a curated selection of trusted insurance plans tailored to your health needs, financial capacity, and annual premium trends.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% set plans = [
+    {
+        "name": "Arogya Plus",
+        "provider": "Star Health",
+        "price": "₹5,000/year",
+        "coverage": "Covers hospital stays, maternity benefits, and diagnostic expenses.",
+        "interest": "10%",
+        "sum_insured": "₹2 Lakh",
+        "logo": "https://isfm.co.in/wp-content/uploads/2024/11/Mask-group-6.png",
+        "buy_link": "https://www.starhealth.in/health-insurance/individuals/"
+    },
+    {
+        "name": "Health Secure",
+        "provider": "ICICI Lombard",
+        "price": "₹6,200/year",
+        "coverage": "Provides access to 4500+ cashless hospitals nationwide.",
+        "interest": "8%",
+        "sum_insured": "₹3 Lakh",
+        "logo": "https://images.moneycontrol.com/static-mcnews/2017/09/ICICI-Lombard-General-Insurance-.jpg?impolicy=website&width=1600&height=900",
+        "buy_link": "https://www.icicilombard.com/health-insurance"
+    },
+    {
+        "name": "Care Freedom",
+        "provider": "Care Health",
+        "price": "₹4,800/year",
+        "coverage": "Ideal for senior citizens; no pre-policy medical tests required.",
+        "interest": "7%",
+        "sum_insured": "₹3 Lakh",
+        "logo": "https://content.jdmagicbox.com/v2/v2/comp/hyderabad/h6/040pxx40.xx40.240221220906.b6h6/catalogue/care-health-insurance-uppal-hyderabad-insurance-agents-1mmymm18vp.jpg",
+        "buy_link": "https://www.careinsurance.com/product/care-freedom"
+    },
+    {
+        "name": "Max Bupa GoActive",
+        "provider": "Niva Bupa",
+        "price": "₹7,300/year",
+        "coverage": "Combines insurance with health tracking and virtual consultations.",
+        "interest": "9%",
+        "sum_insured": "₹5 Lakh",
+        "logo": "https://content.jdmagicbox.com/comp/chandrapur/q9/9999p7172.7172.230919164059.h8q9/catalogue/niva-bupa-health-insurance-company-limited-chandrapur-insurance-companies-d0hqv8u67y.jpg",
+        "buy_link": "https://www.nivabupa.com/goactive-individual.html"
+    },
+    {
+        "name": "Activ One",
+        "provider": "Aditya Birla Health",
+        "price": "₹3,000 – ₹50,000/year",
+        "coverage": "Comprehensive plan with wide sum insured range and no room rent limits.",
+        "interest": "11%",
+        "sum_insured": "₹2 Lakh – ₹6 Crore",
+        "logo": "https://cdn.healthtechalpha.com/static/resized/social_media_image/corporatesById/2137.png",
+        "buy_link": "https://www.adityabirlacapital.com/healthinsurance/activ-one"
+    },
+    {
+        "name": "Health Guard",
+        "provider": "Bajaj Allianz",
+        "price": "₹5,000 – ₹30,000/year",
+        "coverage": "Offers extensive pre and post-hospitalization cover.",
+        "interest": "8%",
+        "sum_insured": "₹1.5 Lakh – ₹1 Crore",
+        "logo": "https://images.moneycontrol.com/static-mcnews/2017/07/Bajaj-Allianz-Insurance-Logo-e1500914200739.jpg",
+        "buy_link": "https://www.bajajallianz.com/health-insurance-plans.html"
+    },
+    {
+        "name": "Care Supreme",
+        "provider": "Care Health Insurance",
+        "price": "₹7,000 – ₹35,000/year",
+        "coverage": "Includes annual health check-ups and no-claim bonuses.",
+        "interest": "9%",
+        "sum_insured": "₹5 Lakh – ₹1 Crore",
+        "logo": "https://www.smcinsurance.com/SocialImages/ArticleImages/september-2023/Care-Insurance-Care-Supreme.jpg",
+        "buy_link": "https://www.careinsurance.com/product/care-supreme"
+    },
+    {
+        "name": "Optima Secure",
+        "provider": "HDFC ERGO",
+        "price": "₹10,000 – ₹46,000/year",
+        "coverage": "High sum insured without sub-limits or caps on illness types.",
+        "interest": "10%",
+        "sum_insured": "₹5 Lakh – ₹2 Crore",
+        "logo": "https://www.livelaw.in/h-upload/2024/02/20/523479-hdfc-ergo.jpg",
+        "buy_link": "https://www.hdfcergo.com/health-insurance/optima-secure"
+    },
+    {
+        "name": "ReAssure 2.0",
+        "provider": "Niva Bupa",
+        "price": "₹10,431/year",
+        "coverage": "Fixed premium plan with automatic sum insured recharge.",
+        "interest": "6%",
+        "sum_insured": "₹5 Lakh – ₹1 Crore",
+        "logo": "https://media.licdn.com/dms/image/v2/D4D05AQHTYsho3YTa8A/feedshare-thumbnail_720_1280/feedshare-thumbnail_720_1280/0/1676950785683?e=2147483647&v=beta&t=EfUYgA4hZDR4Ca7IdvJE4d8jd-LjL6hEsZ6QvH1rn9Q",
+        "buy_link": "https://www.nivabupa.com/family-health-insurance-plans/reassurev2-insurance.html"
+    },
+    {
+        "name": "Health Infinity",
+        "provider": "Reliance General",
+        "price": "₹18,660 – ₹36,979/year",
+        "coverage": "Offers global emergency coverage and maternity benefits.",
+        "interest": "10%",
+        "sum_insured": "₹25 Lakh – ₹5 Crore",
+        "logo": "https://cdn.policyx.com/cms-media/reliance-health-insurance-logo-web65-1727169923.webp",
+        "buy_link": "https://www.reliancegeneral.co.in/health-insurance/health-infinity-insurance"
+    },
+    {
+        "name": "Health Companion",
+        "provider": "Niva Bupa",
+        "price": "₹5,116/year",
+        "coverage": "Affordable family plan with daycare and wellness services.",
+        "interest": "8%",
+        "sum_insured": "₹3 Lakh – ₹1 Crore",
+        "logo": "https://media.licdn.com/dms/image/v2/D4D05AQHTYsho3YTa8A/feedshare-thumbnail_720_1280/feedshare-thumbnail_720_1280/0/1676950785683?e=2147483647&v=beta&t=EfUYgA4hZDR4Ca7IdvJE4d8jd-LjL6hEsZ6QvH1rn9Q",
+        "buy_link": "https://www.nivabupa.com/individual-health-insurance-plans/health-companion-individual.html"
+    },
+    {
+        "name": "Family Health Optima",
+        "provider": "Star Health",
+        "price": "₹7,500 – ₹25,000/year",
+        "coverage": "Family floater plan covering maternity and newborn care.",
+        "interest": "9%",
+        "sum_insured": "₹3 Lakh – ₹25 Lakh",
+        "logo": "https://stat.joinditto.in/images/2024/03/Star-Family-Health-Optima.png",
+        "buy_link": "https://www.starhealth.in/health-insurance/family-health-optima/"
+    },
+    {
+        "name": "ProHealth Prime",
+        "provider": "ManipalCigna",
+        "price": "₹9,000 – ₹30,000/year",
+        "coverage": "Mental health coverage and wellness coaching included.",
+        "interest": "7%",
+        "sum_insured": "₹3 Lakh – ₹15 Lakh",
+        "logo": "https://www.manipalcigna.com/documents/20124/99884/ProHealth%20Prime%20Logo.png",
+        "buy_link": "https://www.manipalcigna.com/hospitalization-cover/prohealth-insurance"
+    },
+    {
+        "name": "Health Suraksha",
+        "provider": "Future Generali",
+        "price": "₹4,000 – ₹20,000/year",
+        "coverage": "Flexible coverage options with lifetime renewability.",
+        "interest": "6%",
+        "sum_insured": "₹50,000 – ₹10 Lakh",
+        "logo": "https://upload.wikimedia.org/wikipedia/commons/3/32/Future_Generali_India_Life_Insurance_logo.jpg",
+        "buy_link": "https://general.futuregenerali.in/health-insurance/future-health-suraksha"
+    }
+]%}
+
+  {% for plan in plans %}
+    <div class="bg-white p-4 border rounded shadow-md">
+      <img src="{{ plan.logo }}" alt="{{ plan.provider }} logo" class="h-10 mb-3 object-contain">
+      <h2 class="text-xl font-semibold text-blue-700">{{ plan.name }}</h2>
+      <p class="text-gray-600">Provider: <strong>{{ plan.provider }}</strong></p>
+      <p class="text-gray-500 text-sm">{{ plan.coverage }}</p>
+      <p class="text-blue-600 text-sm">Coverage Amount: <strong>{{ plan.sum_insured }}</strong></p>
+      <p class="text-green-600 font-bold mt-2">{{ plan.price }}</p>
+      <p class="text-yellow-600 text-sm">Expected Premium Increase: <strong>{{ plan.interest }}</strong></p>
+      <a href="{{ plan.buy_link }}" target="_blank" rel="noopener noreferrer">
+        <button class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Buy Plan</button>
+    </a>
+    
+    
+    
+      
+    </div>
+  {% endfor %}
+</div>
 {% endblock %}

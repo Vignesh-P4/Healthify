@@ -3,7 +3,144 @@
 {% block title %}Doctor Consultation{% endblock %}
 
 {% block content %}
-<h1>Doctor Consultation</h1>
-<p>Book an appointment with a doctor.</p>
-<button class="btn">Book Now</button>
+<h1 class="text-3xl font-bold mb-4 text-blue-800">Doctor Consultation</h1>
+<p class="mb-6 text-gray-700">Book an appointment with a certified doctor and get personal medical advice from the comfort of your home.</p>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {% set doctors = [
+    {
+      "name": "Dr. K. J. Reddy",
+      "specialization": "Orthopaedic Surgeon",
+      "affiliation": "Apollo Hospitals, Jubilee Hills",
+      "time": "9:00 AM - 11:00 AM",
+      "image": "https://www.kjrclinic.com/wp-content/uploads/2019/09/kjr-new-2-min.jpg"
+    },
+    {
+      "name": "Dr. Rajib Paul",
+      "specialization": "General Physician",
+      "affiliation": "Apollo Hospitals, Jubilee Hills",
+      "time": "11:30 AM - 1:00 PM",
+      "image": "https://cdn.apollohospitals.com/hyderabad/2024/05/Dr.-Rajib-Paul.jpg"
+    },
+    {
+      "name": "Dr. Jatin Yegurla",
+      "specialization": "Gastroenterologist",
+      "affiliation": "Apollo Hospitals, Jubilee Hills",
+      "time": "2:00 PM - 4:00 PM",
+      "image": "https://content3.jdmagicbox.com/v2/v2/comp/hyderabad/i5/040pxx40.xx40.240405101310.a3i5/catalogue/dr-jatin-yegurla-jubilee-hills-hyderabad-gastroenterologists-ym8jggmnxn.jpg"
+    },
+    {
+      "name": "Dr. D. Nageshwar Reddy",
+      "specialization": "Gastroenterologist",
+      "affiliation": "AIG Hospitals",
+      "time": "4:30 PM - 6:00 PM",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREO2QUdnjCAKTlRKANQJeqApT3_emY6KxPMw&s"
+    },
+    {
+      "name": "Dr. R. Pavan Kumar",
+      "specialization": "General Physician",
+      "affiliation": "Wellness Hospital",
+      "time": "6:30 PM - 8:00 PM",
+      "image": "https://wellnesshospitals.in/wp-content/uploads/2023/08/Dr.-ravindra-patel.png"
+    }
+  
+  ] %}
+
+  {% for doctor in doctors %}
+  <div class="bg-white p-8 border rounded shadow-md text-center">
+    <div class="mx-auto mb-4 rounded-full h-32 w-32 overflow-hidden">
+      <img src="{{ doctor.image }}" alt="{{ doctor.name }}" class="w-full h-full object-cover">
+    </div>
+    <h2 class="text-xl font-semibold text-blue-700">{{ doctor.name }}</h2>
+    <p class="text-gray-600">{{ doctor.specialization }}</p>
+    <p class="text-gray-500 text-sm">{{ doctor.affiliation }}</p>
+    <p class="text-sm text-gray-500 mb-3">Available: {{ doctor.time }}</p>
+    <button class="bg-blue-600 text-white px-8 py-4 rounded hover:bg-blue-700" onclick="showModal()">Book Now</button>
+  </div>
+{% endfor %}
+
+</div>
+
+<!-- Modal Structure -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2 class="text-xl font-semibold text-blue-700">Booking Not Available</h2>
+    <p>Sorry, we have not yet partnered with real-time doctors. This may happen in the future.</p>
+  </div>
+</div>
+
+<!-- Modal Styles -->
+<style>
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    padding-top: 60px;
+  }
+
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Responsive Modal */
+  @media screen and (max-width: 600px) {
+    .modal-content {
+      width: 90%;
+    }
+  }
+</style>
+
+<!-- JavaScript -->
+<script>
+  // Function to show the modal
+  function showModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+  }
+
+  // Function to close the modal
+  function closeModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  }
+
+  // Close the modal if the user clicks anywhere outside of it
+  window.onclick = function(event) {
+    var modal = document.getElementById("myModal");
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
 {% endblock %}
