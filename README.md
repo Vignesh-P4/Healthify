@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# Healthify-
-=======
+
 # 🚑 Healthify+ – Smart Healthcare Companion App
 
 **Healthify+** is a smart health companion web application designed to enhance emergency responsiveness, simplify medical service access, and educate users on critical first aid — now enhanced with insurance integration support.
